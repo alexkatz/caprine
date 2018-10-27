@@ -151,13 +151,13 @@ ipc.on('toggle-unread-threads-view', () => {
 
 function setDarkMode() {
 	document.documentElement.classList.toggle('dark-mode', config.get('darkMode'));
-	/// ipc.send('set-vibrancy');
+	ipc.send('set-vibrancy');
 }
 
-/// function setVibrancy() {
-// 	document.documentElement.classList.toggle('vibrancy', config.get('vibrancy'));
-// 	ipc.send('set-vibrancy');
-// }
+function setVibrancy() {
+	document.documentElement.classList.toggle('vibrancy', config.get('vibrancy'));
+	ipc.send('set-vibrancy');
+}
 
 function renderOverlayIcon(messageCount) {
 	const canvas = document.createElement('canvas');
@@ -185,12 +185,12 @@ ipc.on('set-dark-mode', setDarkMode);
 
 // Disabled because of https://github.com/electron/electron/issues/10886
 // and other vibrancy bugs with Electron v2
-/// ipc.on('toggle-vibrancy', () => {
-// 	config.set('vibrancy', !config.get('vibrancy'));
-// 	setVibrancy();
+ipc.on('toggle-vibrancy', () => {
+	config.set('vibrancy', !config.get('vibrancy'));
+	setVibrancy();
 
-// 	document.documentElement.style.backgroundColor = 'transparent';
-// });
+	document.documentElement.style.backgroundColor = 'transparent';
+});
 
 ipc.on('render-overlay-icon', (event, messageCount) => {
 	ipc.send('update-overlay-icon', renderOverlayIcon(messageCount).toDataURL(), String(messageCount));
@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	// Activate vibrancy effect if it was set before quitting
-	// setVibrancy();
+	setVibrancy();
 });
 
 window.addEventListener('load', () => {

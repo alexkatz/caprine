@@ -25,6 +25,10 @@ const {app, ipcMain, Menu, nativeImage, Notification} = electron;
 
 app.setAppUserModelId('com.sindresorhus.caprine');
 
+if (!config.get('hardwareAcceleration')) {
+	app.disableHardwareAcceleration();
+}
+
 if (!isDev) {
 	autoUpdater.logger = log;
 	autoUpdater.logger.transports.file.level = 'info';
@@ -149,8 +153,7 @@ function setUserLocale() {
 
 function setNotificationsMute(status) {
 	const label = 'Mute Notifications';
-	const muteMenuItem = Menu.getApplicationMenu().items[0].submenu.items
-		.find(x => x.label === label);
+	const muteMenuItem = Menu.getApplicationMenu().getMenuItemById('mute-notifications');
 
 	config.set('notificationsMuted', status);
 	muteMenuItem.checked = status;
@@ -203,12 +206,7 @@ function createMainWindow() {
 
 			// Workaround for electron/electron#10023
 			win.blur();
-
-			if (process.platform === 'darwin') {
-				app.hide();
-			} else {
-				win.hide();
-			}
+			win.hide();
 		}
 	});
 
