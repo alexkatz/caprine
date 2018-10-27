@@ -29,6 +29,8 @@
 		"electron-dl": "^1.0.0",
 		"electron-is-dev": "^1.0.0",
 		"electron-log": "^2.0.2",
+		"electron-spell-check-provider": "^1.1.1",
+		"electron-spellchecker": "^1.1.2",
 		"electron-store": "^2.0.0",
 		"electron-updater": "^3.0.3",
 		"element-ready": "^3.0.0",

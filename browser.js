@@ -1,5 +1,6 @@
 'use strict';
 const electron = require('electron');
+const SpellCheckProvider = require('electron-spell-check-provider');
 const elementReady = require('element-ready');
 const config = require('./config');
 
@@ -8,6 +9,8 @@ const {ipcRenderer: ipc} = electron;
 const listSelector = 'div[role="navigation"] > div > ul';
 const conversationSelector = '._4u-c._1wfr > ._5f0v.uiScrollableArea';
 const selectedConversationSelector = '._5l-3._1ht1._1ht2';
+
+electron.webFrame.setSpellCheckProvider('en-US', true, new SpellCheckProvider('en-US'));
 
 function showSettingsMenu() {
 	document.querySelector('._30yy._2fug._p').click();
