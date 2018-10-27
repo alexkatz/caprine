@@ -25,6 +25,8 @@ const {app, ipcMain, Menu, nativeImage, Notification} = electron;
 
 app.setAppUserModelId('com.sindresorhus.caprine');
 
+app.disableHardwareAcceleration();
+
 if (!isDev) {
 	autoUpdater.logger = log;
 	autoUpdater.logger.transports.file.level = 'info';
