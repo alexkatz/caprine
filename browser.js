@@ -1,6 +1,7 @@
 'use strict';
 const electron = require('electron');
 const SpellCheckProvider = require('electron-spell-check-provider');
+const {is} = require('electron-util');
 const elementReady = require('element-ready');
 const config = require('./config');
 
@@ -183,8 +184,6 @@ ipc.on('toggle-sidebar', () => {
 
 ipc.on('set-dark-mode', setDarkMode);
 
-// Disabled because of https://github.com/electron/electron/issues/10886
-// and other vibrancy bugs with Electron v2
 ipc.on('toggle-vibrancy', () => {
 	config.set('vibrancy', !config.get('vibrancy'));
 	setVibrancy();
@@ -442,8 +441,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	// Prevent flash of white on startup when in dark mode
 	// TODO: find a CSS-only solution
-	if (config.get('darkMode')) {
-		document.documentElement.style.backgroundColor = '#192633';
+	if (config.get('darkMode') && !config.get('vibrancy')) {
+		document.documentElement.style.backgroundColor = '#1e1e1e';
 	}
 
 	// Activate vibrancy effect if it was set before quitting
@@ -475,7 +474,7 @@ window.addEventListener('load', () => {
 // so this needs to be done the old-school way
 document.addEventListener('keydown', event => {
 	// The `!event.altKey` part is a workaround for https://github.com/electron/electron/issues/13895
-	const combineKey = process.platform === 'darwin' ? event.metaKey : (event.ctrlKey && !event.altKey);
+	const combineKey = is.macos ? event.metaKey : (event.ctrlKey && !event.altKey);
 
 	if (!combineKey) {
 		return;
@@ -500,6 +499,7 @@ window.Notification = (notification => {
 	const customNotification = function (title, options) {
 		let {body, icon, silent} = options;
 		body = body.props ? body.props.content[0] : body;
+		title = (typeof title === 'object' && title.props) ? title.props.content[0] : title;
 
 		const img = new Image();
 		img.crossOrigin = 'anonymous';

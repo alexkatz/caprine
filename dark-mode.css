@@ -10,11 +10,9 @@
 	--base-five: rgba(255, 255, 255, 0.05);
 	--base-ten: rgba(255, 255, 255, 0.1);
 	--base-nine: rgba(255, 255, 255, 0.09);
-	--container-color: #192633;
-	--conversation-bg: rgb(25, 38, 51);
-	--list-header-color: #202c3a;
+	--container-color: #1e1e1e;
+	--list-header-color: #222;
 	--blue: #0084ff;
-	--unread-bg: #365899;
 }
 
 html.dark-mode body {
@@ -54,7 +52,7 @@ html.dark-mode ._wu0 {
 	color: var(--base);
 }
 
-/* message list: link in your message bubble */
+/* Message list: link in your message bubble */
 html.dark-mode ._o46:not(._nd_) ._hh7 a {
 	color: var(--base-seventy);
 }
@@ -122,7 +120,7 @@ html.dark-mode ._3nta {
 
 /* Message list: header above (event) */
 html.dark-mode ._2n3t {
-	background-color: var(--conversation-bg);
+	background-color: var(--container-color);
 }
 
 /* Message list: header above (event) */
@@ -236,16 +234,6 @@ html.dark-mode ._1enh {
 	background: transparent !important;
 }
 
-/* Contact list: person */
-html.dark-mode ._1ht1 {
-	background: transparent !important;
-}
-
-/* Contact list: person (selected) */
-html.dark-mode ._1ht1._1ht2 {
-	background: rgba(0, 0, 0, 0.1) !important;
-}
-
 /* Contact list: person container */
 html.dark-mode ._1qt4 {
 	border-top: solid 1px var(--base-five) !important;
@@ -305,11 +293,13 @@ html.dark-mode ._4g0h {
 }
 
 /* Contact list: unread */
-html.dark-mode ._1ht3 {
-	background: var(--unread-bg) !important;
-}
 html.dark-mode ._1ht3 ._1ht7.timestamp {
 	color: var(--base-twenty);
+}
+
+/* Contact list: message request (decline button) */
+html.dark-mode ._3quh._30yy._17u4._3yvh._1d-z {
+	color: #f03d25;
 }
 
 /* Right sidebar */
@@ -320,7 +310,7 @@ html.dark-mode ._4_j5 {
 
 /* Right sidebar: menus background */
 html.dark-mode ._54ng {
-	background: var(--conversation-bg);
+	background: var(--container-color);
 }
 
 /* Right sidebar: menus text color */
@@ -382,7 +372,7 @@ html.dark-mode ._4rph ._4rpj {
 
 /* Invite friends popup */
 html.dark-mode ._4jgu {
-	background-color: var(--conversation-bg);
+	background-color: var(--container-color);
 }
 
 html.dark-mode ._5rh4 {
@@ -427,7 +417,7 @@ html.dark-mode ._1k1p {
 
 /* Conversation search */
 html.dark-mode ._33p7 {
-	background-color: var(--conversation-bg);
+	background-color: var(--container-color);
 }
 html.dark-mode ._33p7 ._b-u,
 html.dark-mode ._33p7 ._b-v {
@@ -488,7 +478,7 @@ html.dark-mode ._34n6 {
 /* Message reaction buttons */
 html.dark-mode ._aou,
 html.dark-mode ._4kf5 {
-	background-color: var(--conversation-bg);
+	background-color: var(--container-color);
 }
 
 /* Message action buttons */
@@ -712,4 +702,10 @@ html.dark-mode .__6j._43kk {
 html.dark-mode ._3-mr ._3-mt,
 html.dark-mode ._3-mr ._3-mu {
 	color: #fff;
+}
+
+/* Fix text color on the "Active Contacts" view */
+html.dark-mode ._6ckd ._6cke,
+html.dark-mode ._6ckd ._6ckf {
+	color: var(--base-ninety);
 }
